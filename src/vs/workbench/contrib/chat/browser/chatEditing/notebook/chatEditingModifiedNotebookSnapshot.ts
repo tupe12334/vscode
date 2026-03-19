@@ -32,7 +32,7 @@ export function parseNotebookSnapshotFileURI(resource: URI): ChatEditingSnapshot
 
 export function createSnapshot(notebook: INotebookTextModel, transientOptions: TransientOptions | undefined, outputSizeConfig: IConfigurationService | number): string {
 	const outputSizeLimit = (typeof outputSizeConfig === 'number' ? outputSizeConfig : outputSizeConfig.getValue<number>(NotebookSetting.outputBackupSizeLimit)) * 1024;
-	return serializeSnapshot(notebook.createSnapshot({ context: SnapshotContext.Backup, outputSizeLimit, transientOptions }), transientOptions);
+	return serializeSnapshot(notebook.createSnapshot({ context: SnapshotContext.Save, outputSizeLimit, transientOptions }), transientOptions);
 }
 
 export function restoreSnapshot(notebook: INotebookTextModel, snapshot: string): void {

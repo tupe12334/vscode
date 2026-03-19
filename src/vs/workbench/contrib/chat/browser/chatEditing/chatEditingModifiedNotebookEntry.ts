@@ -112,7 +112,7 @@ export class ChatEditingModifiedNotebookEntry extends AbstractChatEditingModifie
 			const originalUri = getNotebookSnapshotFileURI(telemetryInfo.sessionResource, telemetryInfo.requestId, generateUuid(), notebook.uri.scheme === Schemas.untitled ? `/${notebook.uri.path}` : notebook.uri.path, notebook.viewType);
 			const [options, buffer] = await Promise.all([
 				notebookService.withNotebookDataProvider(resourceRef.object.notebook.notebookType),
-				notebookService.createNotebookTextDocumentSnapshot(notebook.uri, SnapshotContext.Backup, CancellationToken.None).then(s => streamToBuffer(s))
+				notebookService.createNotebookTextDocumentSnapshot(notebook.uri, SnapshotContext.Save, CancellationToken.None).then(s => streamToBuffer(s))
 			]);
 			const disposables = new DisposableStore();
 			// Register so that we can load this from file system.
